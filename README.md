@@ -1,7 +1,8 @@
 # Full-Stack-Logger
 ## Description
-Rather than throwing errors or using print statements, we can use services such as Log4j to manage our error messages and warnings.
-This project is a full stack manager of logs. The logs are stored on a server and there is a GUI to manage logs or download log statistics.
+Rather than throwing errors or using print statements, we can a service to manage our error messages and warnings.
+This project is a manager of logs. Logs are stored on a server and there is a GUI to manage logs or download log statistics.
+There are executables that can be run to show how the service operates.
 
 ## Preconditions
  - Install Maven
