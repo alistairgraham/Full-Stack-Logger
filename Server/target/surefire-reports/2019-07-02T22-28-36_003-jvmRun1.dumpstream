@@ -1,0 +1,93 @@
+# Created at 2019-07-02T22:28:41.234
+TestSet has not finished before stream error has appeared >> initializing exit by non-null configuration: DEFAULT
+java.io.EOFException
+	at java.base/java.io.DataInputStream.readInt(DataInputStream.java:397)
+	at org.apache.maven.surefire.booter.MasterProcessCommand.decode(MasterProcessCommand.java:115)
+	at org.apache.maven.surefire.booter.CommandReader$CommandRunnable.run(CommandReader.java:390)
+	at java.base/java.lang.Thread.run(Thread.java:835)
+
+
+# Created at 2019-07-02T22:28:46.681
+Unexpected IOException: 7,1,nz.ac.vuw.swen301.assignment3.server.BlackBoxTests,testPost_InvalidRequest_Entity(nz.ac.vuw.swen301.assignment3.server.BlackBoxTests),null,Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified,null,Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified,BlackBoxTests.startServer:67 \00BB IO Cannot run program "mvn": CreateProcess erro...,java.io.IOException: Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified\000A\0009at nz.ac.vuw.swen301.assignment3.server.BlackBoxTests.startServer(BlackBoxTests.java:67)\000ACaused by: java.io.IOException: CreateProcess error=2\002C The system cannot find the file specified\000A\0009at nz.ac.vuw.swen301.assignment3.server.BlackBoxTests.startServer(BlackBoxTests.java:67)\000A
+
+
+# Created at 2019-07-02T22:28:46.681
+Unexpected IOException: 7,1,nz.ac.vuw.swen301.assignment3.server.BlackBoxTests,testPost_InvalidRequest_Entity(nz.ac.vuw.swen301.assignment3.server.BlackBoxTests),null,Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified,null,Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified,BlackBoxTests.stopServer:75 \00BB IO Cannot run program "mvn": CreateProcess error...,java.io.IOException: Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified\000A\0009at nz.ac.vuw.swen301.assignment3.server.BlackBoxTests.stopServer(BlackBoxTests.java:75)\000ACaused by: java.io.IOException: CreateProcess error=2\002C The system cannot find the file specified\000A\0009at nz.ac.vuw.swen301.assignment3.server.BlackBoxTests.stopServer(BlackBoxTests.java:75)\000A
+
+
+# Created at 2019-07-02T22:28:46.696
+Unexpected IOException: 5,1,nz.ac.vuw.swen301.assignment3.server.BlackBoxTests,testGet_Invalid_Limit_High(nz.ac.vuw.swen301.assignment3.server.BlackBoxTests),null,null,null
+
+
+# Created at 2019-07-02T22:28:54.713
+Unexpected IOException: 7,1,nz.ac.vuw.swen301.assignment3.server.BlackBoxTests,testGet_Invalid_Limit_High(nz.ac.vuw.swen301.assignment3.server.BlackBoxTests),null,Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified,null,Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified,BlackBoxTests.startServer:67 \00BB IO Cannot run program "mvn": CreateProcess erro...,java.io.IOException: Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified\000A\0009at nz.ac.vuw.swen301.assignment3.server.BlackBoxTests.startServer(BlackBoxTests.java:67)\000ACaused by: java.io.IOException: CreateProcess error=2\002C The system cannot find the file specified\000A\0009at nz.ac.vuw.swen301.assignment3.server.BlackBoxTests.startServer(BlackBoxTests.java:67)\000A
+
+
+# Created at 2019-07-02T22:28:54.713
+Unexpected IOException: 7,1,nz.ac.vuw.swen301.assignment3.server.BlackBoxTests,testGet_Invalid_Limit_High(nz.ac.vuw.swen301.assignment3.server.BlackBoxTests),null,Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified,null,Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified,BlackBoxTests.stopServer:75 \00BB IO Cannot run program "mvn": CreateProcess error...,java.io.IOException: Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified\000A\0009at nz.ac.vuw.swen301.assignment3.server.BlackBoxTests.stopServer(BlackBoxTests.java:75)\000ACaused by: java.io.IOException: CreateProcess error=2\002C The system cannot find the file specified\000A\0009at nz.ac.vuw.swen301.assignment3.server.BlackBoxTests.stopServer(BlackBoxTests.java:75)\000A
+
+
+# Created at 2019-07-02T22:28:54.725
+Unexpected IOException: 5,1,nz.ac.vuw.swen301.assignment3.server.BlackBoxTests,testStats(nz.ac.vuw.swen301.assignment3.server.BlackBoxTests),null,null,null
+
+
+# Created at 2019-07-02T22:29:02.737
+Unexpected IOException: 7,1,nz.ac.vuw.swen301.assignment3.server.BlackBoxTests,testStats(nz.ac.vuw.swen301.assignment3.server.BlackBoxTests),null,Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified,null,Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified,BlackBoxTests.startServer:67 \00BB IO Cannot run program "mvn": CreateProcess erro...,java.io.IOException: Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified\000A\0009at nz.ac.vuw.swen301.assignment3.server.BlackBoxTests.startServer(BlackBoxTests.java:67)\000ACaused by: java.io.IOException: CreateProcess error=2\002C The system cannot find the file specified\000A\0009at nz.ac.vuw.swen301.assignment3.server.BlackBoxTests.startServer(BlackBoxTests.java:67)\000A
+
+
+# Created at 2019-07-02T22:29:02.737
+Unexpected IOException: 7,1,nz.ac.vuw.swen301.assignment3.server.BlackBoxTests,testStats(nz.ac.vuw.swen301.assignment3.server.BlackBoxTests),null,Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified,null,Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified,BlackBoxTests.stopServer:75 \00BB IO Cannot run program "mvn": CreateProcess error...,java.io.IOException: Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified\000A\0009at nz.ac.vuw.swen301.assignment3.server.BlackBoxTests.stopServer(BlackBoxTests.java:75)\000ACaused by: java.io.IOException: CreateProcess error=2\002C The system cannot find the file specified\000A\0009at nz.ac.vuw.swen301.assignment3.server.BlackBoxTests.stopServer(BlackBoxTests.java:75)\000A
+
+
+# Created at 2019-07-02T22:29:02.752
+Unexpected IOException: 5,1,nz.ac.vuw.swen301.assignment3.server.BlackBoxTests,testGet_Levels(nz.ac.vuw.swen301.assignment3.server.BlackBoxTests),null,null,null
+
+
+# Created at 2019-07-02T22:29:10.769
+Unexpected IOException: 7,1,nz.ac.vuw.swen301.assignment3.server.BlackBoxTests,testGet_Levels(nz.ac.vuw.swen301.assignment3.server.BlackBoxTests),null,Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified,null,Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified,BlackBoxTests.startServer:67 \00BB IO Cannot run program "mvn": CreateProcess erro...,java.io.IOException: Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified\000A\0009at nz.ac.vuw.swen301.assignment3.server.BlackBoxTests.startServer(BlackBoxTests.java:67)\000ACaused by: java.io.IOException: CreateProcess error=2\002C The system cannot find the file specified\000A\0009at nz.ac.vuw.swen301.assignment3.server.BlackBoxTests.startServer(BlackBoxTests.java:67)\000A
+
+
+# Created at 2019-07-02T22:29:10.769
+Unexpected IOException: 7,1,nz.ac.vuw.swen301.assignment3.server.BlackBoxTests,testGet_Levels(nz.ac.vuw.swen301.assignment3.server.BlackBoxTests),null,Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified,null,Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified,BlackBoxTests.stopServer:75 \00BB IO Cannot run program "mvn": CreateProcess error...,java.io.IOException: Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified\000A\0009at nz.ac.vuw.swen301.assignment3.server.BlackBoxTests.stopServer(BlackBoxTests.java:75)\000ACaused by: java.io.IOException: CreateProcess error=2\002C The system cannot find the file specified\000A\0009at nz.ac.vuw.swen301.assignment3.server.BlackBoxTests.stopServer(BlackBoxTests.java:75)\000A
+
+
+# Created at 2019-07-02T22:29:10.784
+Unexpected IOException: 5,1,nz.ac.vuw.swen301.assignment3.server.BlackBoxTests,testPost_ValidRequest_Values(nz.ac.vuw.swen301.assignment3.server.BlackBoxTests),null,null,null
+
+
+# Created at 2019-07-02T22:29:18.799
+Unexpected IOException: 7,1,nz.ac.vuw.swen301.assignment3.server.BlackBoxTests,testPost_ValidRequest_Values(nz.ac.vuw.swen301.assignment3.server.BlackBoxTests),null,Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified,null,Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified,BlackBoxTests.startServer:67 \00BB IO Cannot run program "mvn": CreateProcess erro...,java.io.IOException: Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified\000A\0009at nz.ac.vuw.swen301.assignment3.server.BlackBoxTests.startServer(BlackBoxTests.java:67)\000ACaused by: java.io.IOException: CreateProcess error=2\002C The system cannot find the file specified\000A\0009at nz.ac.vuw.swen301.assignment3.server.BlackBoxTests.startServer(BlackBoxTests.java:67)\000A
+
+
+# Created at 2019-07-02T22:29:18.805
+Unexpected IOException: 7,1,nz.ac.vuw.swen301.assignment3.server.BlackBoxTests,testPost_ValidRequest_Values(nz.ac.vuw.swen301.assignment3.server.BlackBoxTests),null,Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified,null,Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified,BlackBoxTests.stopServer:75 \00BB IO Cannot run program "mvn": CreateProcess error...,java.io.IOException: Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified\000A\0009at nz.ac.vuw.swen301.assignment3.server.BlackBoxTests.stopServer(BlackBoxTests.java:75)\000ACaused by: java.io.IOException: CreateProcess error=2\002C The system cannot find the file specified\000A\0009at nz.ac.vuw.swen301.assignment3.server.BlackBoxTests.stopServer(BlackBoxTests.java:75)\000A
+
+
+# Created at 2019-07-02T22:29:18.811
+Unexpected IOException: 5,1,nz.ac.vuw.swen301.assignment3.server.BlackBoxTests,testGet_Invalid_Limit_Low(nz.ac.vuw.swen301.assignment3.server.BlackBoxTests),null,null,null
+
+
+# Created at 2019-07-02T22:29:26.832
+Unexpected IOException: 7,1,nz.ac.vuw.swen301.assignment3.server.BlackBoxTests,testGet_Invalid_Limit_Low(nz.ac.vuw.swen301.assignment3.server.BlackBoxTests),null,Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified,null,Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified,BlackBoxTests.startServer:67 \00BB IO Cannot run program "mvn": CreateProcess erro...,java.io.IOException: Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified\000A\0009at nz.ac.vuw.swen301.assignment3.server.BlackBoxTests.startServer(BlackBoxTests.java:67)\000ACaused by: java.io.IOException: CreateProcess error=2\002C The system cannot find the file specified\000A\0009at nz.ac.vuw.swen301.assignment3.server.BlackBoxTests.startServer(BlackBoxTests.java:67)\000A
+
+
+# Created at 2019-07-02T22:29:26.832
+Unexpected IOException: 7,1,nz.ac.vuw.swen301.assignment3.server.BlackBoxTests,testGet_Invalid_Limit_Low(nz.ac.vuw.swen301.assignment3.server.BlackBoxTests),null,Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified,null,Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified,BlackBoxTests.stopServer:75 \00BB IO Cannot run program "mvn": CreateProcess error...,java.io.IOException: Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified\000A\0009at nz.ac.vuw.swen301.assignment3.server.BlackBoxTests.stopServer(BlackBoxTests.java:75)\000ACaused by: java.io.IOException: CreateProcess error=2\002C The system cannot find the file specified\000A\0009at nz.ac.vuw.swen301.assignment3.server.BlackBoxTests.stopServer(BlackBoxTests.java:75)\000A
+
+
+# Created at 2019-07-02T22:29:26.847
+Unexpected IOException: 5,1,nz.ac.vuw.swen301.assignment3.server.BlackBoxTests,testPost_InvalidRequest1(nz.ac.vuw.swen301.assignment3.server.BlackBoxTests),null,null,null
+
+
+# Created at 2019-07-02T22:29:34.856
+Unexpected IOException: 7,1,nz.ac.vuw.swen301.assignment3.server.BlackBoxTests,testPost_InvalidRequest1(nz.ac.vuw.swen301.assignment3.server.BlackBoxTests),null,Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified,null,Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified,BlackBoxTests.startServer:67 \00BB IO Cannot run program "mvn": CreateProcess erro...,java.io.IOException: Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified\000A\0009at nz.ac.vuw.swen301.assignment3.server.BlackBoxTests.startServer(BlackBoxTests.java:67)\000ACaused by: java.io.IOException: CreateProcess error=2\002C The system cannot find the file specified\000A\0009at nz.ac.vuw.swen301.assignment3.server.BlackBoxTests.startServer(BlackBoxTests.java:67)\000A
+
+
+# Created at 2019-07-02T22:29:34.861
+Unexpected IOException: 7,1,nz.ac.vuw.swen301.assignment3.server.BlackBoxTests,testPost_InvalidRequest1(nz.ac.vuw.swen301.assignment3.server.BlackBoxTests),null,Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified,null,Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified,BlackBoxTests.stopServer:75 \00BB IO Cannot run program "mvn": CreateProcess error...,java.io.IOException: Cannot run program "mvn": CreateProcess error=2\002C The system cannot find the file specified\000A\0009at nz.ac.vuw.swen301.assignment3.server.BlackBoxTests.stopServer(BlackBoxTests.java:75)\000ACaused by: java.io.IOException: CreateProcess error=2\002C The system cannot find the file specified\000A\0009at nz.ac.vuw.swen301.assignment3.server.BlackBoxTests.stopServer(BlackBoxTests.java:75)\000A
+
+
+# Created at 2019-07-02T22:29:34.868
+Unexpected IOException: 5,1,nz.ac.vuw.swen301.assignment3.server.BlackBoxTests,testPost_InvalidRequest2(nz.ac.vuw.swen301.assignment3.server.BlackBoxTests),null,null,null
+
+

@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<JDepend>
+    <Packages>
+
+        <Package name="com.fasterxml.jackson.databind">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="java.lang">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="java.time">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="java.time.temporal">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="java.util">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="java.util.concurrent">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="nz.ac.vuw.swen301.assignment3.client">
+            <Stats>
+                <TotalClasses>5</TotalClasses>
+                <ConcreteClasses>5</ConcreteClasses>
+                <AbstractClasses>0</AbstractClasses>
+                <Ca>0</Ca>
+                <Ce>13</Ce>
+                <A>0</A>
+                <I>1</I>
+                <D>0</D>
+                <V>1</V>
+            </Stats>
+
+            <AbstractClasses>
+            </AbstractClasses>
+
+            <ConcreteClasses>
+                <Class sourceFile="CreateRandomLogs.java">
+                    nz.ac.vuw.swen301.assignment3.client.CreateRandomLogs
+                </Class>
+                <Class sourceFile="CreateRandomLogs.java">
+                    nz.ac.vuw.swen301.assignment3.client.CreateRandomLogs$MyLevel
+                </Class>
+                <Class sourceFile="LogEvent.java">
+                    nz.ac.vuw.swen301.assignment3.client.LogEvent
+                </Class>
+                <Class sourceFile="LogMonitor.java">
+                    nz.ac.vuw.swen301.assignment3.client.LogMonitor$Level
+                </Class>
+                <Class sourceFile="Resthome4LogsAppender.java">
+                    nz.ac.vuw.swen301.assignment3.client.Resthome4LogsAppender
+                </Class>
+            </ConcreteClasses>
+
+            <DependsUpon>
+                <Package>com.fasterxml.jackson.databind</Package>
+                <Package>java.lang</Package>
+                <Package>java.time</Package>
+                <Package>java.time.temporal</Package>
+                <Package>java.util</Package>
+                <Package>java.util.concurrent</Package>
+                <Package>org.apache.http.client</Package>
+                <Package>org.apache.http.client.methods</Package>
+                <Package>org.apache.http.client.utils</Package>
+                <Package>org.apache.http.entity</Package>
+                <Package>org.apache.http.impl.client</Package>
+                <Package>org.apache.log4j</Package>
+                <Package>org.apache.log4j.spi</Package>
+            </DependsUpon>
+
+            <UsedBy>
+            </UsedBy>
+        </Package>
+
+        <Package name="org.apache.http.client">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="org.apache.http.client.methods">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="org.apache.http.client.utils">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="org.apache.http.entity">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="org.apache.http.impl.client">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="org.apache.log4j">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="org.apache.log4j.spi">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+    </Packages>
+
+    <Cycles>
+    </Cycles>
+</JDepend>

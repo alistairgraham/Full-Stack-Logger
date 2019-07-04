@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LogMonitor.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">assignment3-client</a> &gt; <a href="index.source.html" class="el_package">nz.ac.vuw.swen301.assignment3.client</a> &gt; <span class="el_source">LogMonitor.java</span></div><h1>LogMonitor.java</h1><pre class="source lang-java linenums">package nz.ac.vuw.swen301.assignment3.client;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.util.EntityUtils;
+import org.apache.log4j.Logger;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+<span class="nc" id="L24">public class LogMonitor {</span>
+    private static final String TEST_SCHEME = &quot;http&quot;;
+    private static final String TEST_HOST = &quot;localhost&quot;;
+    private static final int TEST_PORT = 8080;
+    private static final String TEST_PATH = &quot;/resthome4logs&quot;;
+    private static final String LOGS_PATH = TEST_PATH + &quot;/logs&quot;;
+    private static final String STATS_PATH = TEST_PATH + &quot;/stats&quot;;
+<span class="nc" id="L31">    private enum Level {</span>
+<span class="nc" id="L32">        ALL,</span>
+<span class="nc" id="L33">        TRACE,</span>
+<span class="nc" id="L34">        DEBUG,</span>
+<span class="nc" id="L35">        INFO,</span>
+<span class="nc" id="L36">        WARN,</span>
+<span class="nc" id="L37">        ERROR,</span>
+<span class="nc" id="L38">        FATAL,</span>
+<span class="nc" id="L39">        OFF</span>
+    }
+<span class="nc" id="L41">    private static final Integer MIN_LEVEL = 0;</span>
+<span class="nc" id="L42">    private static final Integer MAX_LEVEL = 50;</span>
+    private static final int WIDTH = 800;
+    private static final int HEIGHT = 600;
+    private static Level selectedLevel;
+    private static Integer selectedLimit;
+
+    private static JFrame frame;
+    private static JPanel page;
+    private static JPanel optionPanel;
+    private static JPanel tablePanel;
+    private static JScrollPane table;
+
+    public static void main(String[] args) {
+<span class="nc" id="L55">        Logger.getLogger(&quot;org.apache.http&quot;).setLevel(org.apache.log4j.Level.OFF);</span>
+<span class="nc" id="L56">        createGUI();</span>
+<span class="nc" id="L57">    }</span>
+
+
+    private static void createGUI() {
+<span class="nc" id="L61">        frame = new JFrame();</span>
+<span class="nc" id="L62">        frame.setTitle(&quot;Ali G's Log Monitor&quot;);</span>
+<span class="nc" id="L63">        frame.setSize(WIDTH, HEIGHT);</span>
+<span class="nc" id="L64">        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();</span>
+<span class="nc" id="L65">        frame.setLocation((int)((screenSize.getWidth()/2)-WIDTH/2), (int)((screenSize.getHeight()/2)-HEIGHT/2));</span>
+<span class="nc" id="L66">        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="nc" id="L67">        frame.setResizable(false);</span>
+<span class="nc" id="L68">        page = new JPanel();</span>
+<span class="nc" id="L69">        page.setLayout(new BoxLayout(page, BoxLayout.Y_AXIS));</span>
+
+<span class="nc" id="L71">        tablePanel = new JPanel();</span>
+<span class="nc" id="L72">        tablePanel.setPreferredSize(new Dimension(WIDTH, HEIGHT*6/7));</span>
+<span class="nc" id="L73">        table = createTable(new Object[0][0]);</span>
+<span class="nc" id="L74">        table.setPreferredSize(new Dimension(WIDTH*6/7, HEIGHT*6/7));</span>
+<span class="nc" id="L75">        tablePanel.add(table);</span>
+
+<span class="nc" id="L77">        optionPanel = createOptionPanel();</span>
+<span class="nc" id="L78">        page.add(optionPanel);</span>
+<span class="nc" id="L79">        page.add(tablePanel);</span>
+<span class="nc" id="L80">        frame.add(page);</span>
+<span class="nc" id="L81">        frame.setVisible(true);</span>
+<span class="nc" id="L82">        frame.revalidate();</span>
+<span class="nc" id="L83">        frame.repaint();</span>
+<span class="nc" id="L84">    }</span>
+
+
+    private static JPanel createOptionPanel() {
+<span class="nc" id="L88">        JPanel optionPanel = new JPanel();</span>
+<span class="nc" id="L89">        GridLayout layout = new GridLayout(1,7);</span>
+<span class="nc" id="L90">        layout.setHgap(5);</span>
+<span class="nc" id="L91">        optionPanel.setLayout(layout);</span>
+
+<span class="nc" id="L93">        JLabel levelLabel = new JLabel(&quot;Min Level:&quot;, JLabel.RIGHT);</span>
+<span class="nc" id="L94">        levelLabel.setSize(40,40);</span>
+<span class="nc" id="L95">        optionPanel.add(levelLabel);</span>
+
+<span class="nc" id="L97">        JComboBox levelCombo = new JComboBox(Level.values());</span>
+<span class="nc" id="L98">        levelCombo.setSelectedIndex(0);</span>
+<span class="nc" id="L99">        selectedLevel = Level.valueOf(String.valueOf(levelCombo.getSelectedItem()));</span>
+<span class="nc" id="L100">        levelCombo.setBounds(50, 50,90,20);</span>
+<span class="nc" id="L101">        levelCombo.addActionListener(e -&gt; {</span>
+<span class="nc" id="L102">            selectedLevel = Level.valueOf(String.valueOf(levelCombo.getSelectedItem()));</span>
+<span class="nc" id="L103">        });</span>
+<span class="nc" id="L104">        optionPanel.add(levelCombo);</span>
+
+<span class="nc" id="L106">        JLabel limitLabel = new JLabel(&quot;Limit:&quot;, JLabel.RIGHT);</span>
+<span class="nc" id="L107">        limitLabel.setSize(40,40);</span>
+<span class="nc" id="L108">        optionPanel.add(limitLabel);</span>
+
+<span class="nc" id="L110">        JComboBox limitCombo = new JComboBox((IntStream.range(MIN_LEVEL, MAX_LEVEL+1).boxed().collect(Collectors.toList()).toArray()));</span>
+<span class="nc" id="L111">        limitCombo.setSelectedIndex(11);</span>
+<span class="nc" id="L112">        limitCombo.setBounds(50, 50,90,20);</span>
+<span class="nc" id="L113">        limitCombo.addActionListener(e -&gt; {</span>
+<span class="nc" id="L114">            selectedLimit = Integer.parseInt(limitCombo.getSelectedItem().toString());</span>
+<span class="nc" id="L115">        });</span>
+<span class="nc" id="L116">        optionPanel.add(limitCombo);</span>
+
+        //Space filler
+<span class="nc" id="L119">        JPanel blank = new JPanel();</span>
+<span class="nc" id="L120">        blank.setSize(100,1);</span>
+<span class="nc" id="L121">        optionPanel.add(blank);</span>
+
+<span class="nc" id="L123">        JButton fetchButton = new JButton(&quot;Fetch&quot;);</span>
+<span class="nc" id="L124">        fetchButton.addActionListener(e -&gt; {</span>
+<span class="nc" id="L125">            fetchData();</span>
+<span class="nc" id="L126">            frame.getContentPane().removeAll();</span>
+<span class="nc" id="L127">            page.removeAll();</span>
+<span class="nc" id="L128">            tablePanel.removeAll();</span>
+<span class="nc" id="L129">            tablePanel.setPreferredSize(new Dimension(WIDTH, HEIGHT*6/7));</span>
+<span class="nc" id="L130">            table.setPreferredSize(new Dimension(WIDTH*6/7, HEIGHT*6/7));</span>
+<span class="nc" id="L131">            tablePanel.add(table);</span>
+<span class="nc" id="L132">            page.add(optionPanel);</span>
+<span class="nc" id="L133">            page.add(tablePanel);</span>
+<span class="nc" id="L134">            frame.add(page);</span>
+<span class="nc" id="L135">            frame.setVisible(true);</span>
+<span class="nc" id="L136">        });</span>
+<span class="nc" id="L137">        optionPanel.add(fetchButton);</span>
+
+<span class="nc" id="L139">        JButton downloadButton = new JButton(&quot;Download&quot;);</span>
+<span class="nc" id="L140">        downloadButton.addActionListener(e -&gt; {</span>
+<span class="nc" id="L141">            downloadExcel();</span>
+<span class="nc" id="L142">        });</span>
+<span class="nc" id="L143">        optionPanel.add(downloadButton);</span>
+
+<span class="nc" id="L145">        selectedLevel = Level.valueOf(String.valueOf(levelCombo.getSelectedItem()));</span>
+<span class="nc" id="L146">        selectedLimit = Integer.parseInt(limitCombo.getSelectedItem().toString());</span>
+
+<span class="nc" id="L148">        return optionPanel;</span>
+    }
+
+
+    private static JScrollPane createTable(Object[][] data) {
+<span class="nc" id="L153">        String[] colNames = {&quot;Time&quot;, &quot;Level&quot;, &quot;Logger&quot;, &quot;Thread&quot;, &quot;Message&quot;};</span>
+
+<span class="nc" id="L155">        JTable table = new JTable(data, colNames);</span>
+<span class="nc" id="L156">        JScrollPane scrollPane = new JScrollPane(table);</span>
+<span class="nc" id="L157">        table.setFillsViewportHeight(true);</span>
+
+<span class="nc" id="L159">        return scrollPane;</span>
+    }
+
+    private static void fetchData() {
+        try {
+<span class="nc" id="L164">            URIBuilder builder = new URIBuilder();</span>
+<span class="nc" id="L165">            builder.setScheme(TEST_SCHEME).setHost(TEST_HOST).setPort(TEST_PORT).setPath(LOGS_PATH);</span>
+<span class="nc" id="L166">            builder.addParameter(&quot;limit&quot;, selectedLimit.toString());</span>
+<span class="nc" id="L167">            builder.addParameter(&quot;level&quot;, selectedLevel.toString());</span>
+<span class="nc" id="L168">            HttpClient httpClient = HttpClientBuilder.create().build();</span>
+<span class="nc" id="L169">            HttpGet request = new HttpGet(builder.build());</span>
+
+<span class="nc" id="L171">            HttpResponse response = httpClient.execute(request);</span>
+<span class="nc" id="L172">            String logsJSON = EntityUtils.toString(response.getEntity());</span>
+<span class="nc" id="L173">            LogEvent[] responseLogList = new ObjectMapper().readValue(logsJSON, LogEvent[].class);</span>
+<span class="nc" id="L174">            Object[][] data = convertLogsToTableData(responseLogList);</span>
+<span class="nc" id="L175">            table = createTable(data);</span>
+<span class="nc" id="L176">        } catch (URISyntaxException | IOException e) {</span>
+<span class="nc" id="L177">            e.printStackTrace();</span>
+<span class="nc" id="L178">            return;</span>
+<span class="nc" id="L179">        }</span>
+<span class="nc" id="L180">    }</span>
+
+
+    private static void downloadExcel() {
+        try {
+<span class="nc" id="L185">            URIBuilder builder = new URIBuilder();</span>
+<span class="nc" id="L186">            builder.setScheme(TEST_SCHEME).setHost(TEST_HOST).setPort(TEST_PORT).setPath(STATS_PATH);</span>
+<span class="nc" id="L187">            HttpClient httpClient = HttpClientBuilder.create().build();</span>
+<span class="nc" id="L188">            HttpGet request = new HttpGet(builder.build());</span>
+
+<span class="nc" id="L190">            HttpResponse response = httpClient.execute(request);</span>
+<span class="nc" id="L191">            HSSFWorkbook workbook = new HSSFWorkbook(response.getEntity().getContent());</span>
+
+<span class="nc" id="L193">            JFileChooser chooser=new JFileChooser();</span>
+<span class="nc" id="L194">            chooser.setCurrentDirectory(new File(System.getProperty(&quot;user.dir&quot;)));</span>
+<span class="nc" id="L195">            chooser.setFileSelectionMode(JFileChooser.APPROVE_OPTION);</span>
+<span class="nc" id="L196">            chooser.showSaveDialog(null);</span>
+<span class="nc" id="L197">            String path=chooser.getSelectedFile().getAbsolutePath();</span>
+<span class="nc" id="L198">            FileOutputStream fileOut = new FileOutputStream(path+&quot;.xls&quot;);</span>
+
+<span class="nc" id="L200">            workbook.write(fileOut);</span>
+<span class="nc" id="L201">            fileOut.flush();</span>
+<span class="nc" id="L202">            fileOut.close();</span>
+<span class="nc" id="L203">        } catch (URISyntaxException | IOException e) {</span>
+<span class="nc" id="L204">            e.printStackTrace();</span>
+<span class="nc" id="L205">            return;</span>
+<span class="nc" id="L206">        }</span>
+<span class="nc" id="L207">    }</span>
+
+
+    private static Object[][] convertLogsToTableData(LogEvent[] logList) {
+<span class="nc bnc" id="L211" title="All 2 branches missed.">        if (logList==null) return new Object[0][0];</span>
+<span class="nc" id="L212">        Object[][] data = new Object[logList.length][5];</span>
+<span class="nc bnc" id="L213" title="All 2 branches missed.">        for(int i=0; i&lt;logList.length; i++) {</span>
+<span class="nc" id="L214">            LogEvent log = logList[i];</span>
+<span class="nc" id="L215">            data[i][0] = log.getTimestamp();</span>
+<span class="nc" id="L216">            data[i][1] = log.getLevel();</span>
+<span class="nc" id="L217">            data[i][2] = log.getLogger();</span>
+<span class="nc" id="L218">            data[i][3] = log.getThread();</span>
+<span class="nc" id="L219">            data[i][4] = log.getMessage();</span>
+        }
+<span class="nc" id="L221">        return data;</span>
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
